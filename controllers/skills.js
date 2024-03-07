@@ -19,7 +19,7 @@ function create(req, res) {
 }
 
 function newSkill(req, res) {
-    res.render('/skills/new', {
+    res.render('skills/new', {
         title: 'New Skill'
     })
 }
