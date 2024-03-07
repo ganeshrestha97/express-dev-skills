@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var methodOverride = require('method-override')
 
 var indexRouter = require('./routes/index');
 var skillsRouter = require('./routes/skills');
@@ -13,12 +14,36 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Log in the terminal the HTTP request info
 app.use(logger('dev'));
+
+
+// Processes data that is sent in the body of the request, as json
 app.use(express.json());
+
+
+// Processes data sent from a form in the 'body' of the request
+// It will create a property on req.body, for each <input>, <select>, etc.
 app.use(express.urlencoded({ extended: false }));
+
+
+// Adds cookies property for each cookie sent in the request
 app.use(cookieParser());
+
+
+// If the request is for a static asset, returns that file
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(methodOverride('_method'))
+
+app.use(function(req, res, next) {
+  console.log('Hello from the Otherside')
+  res.locals.time = new Date().toLocaleDateString()
+  next()
+})
+
+// Routers are middleware that map requests to our controller functions
+// which are themselves middleware that res.render or res.redirect
 app.use('/', indexRouter);
 app.use('/skills', skillsRouter);
 
@@ -39,3 +64,9 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+
+
+

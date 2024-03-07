@@ -3,19 +3,32 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   font: 50px "Special Elite", Roboto, sans-serif;
   font-size: x-large;
-  border: 3px solid gray; /* Creates a solid black border */
-  padding: 10px; /* Adds space between the text and the border */
-  display: inline-block; /* Makes the border wrap tightly around the text */
+  border: 3px solid gray; 
+  padding: 10px; 
+  display: inline-block; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: darkgray;
   background: black;
 }
  
 a {
   color: #00b7ff;
+}
+
+.delete-form {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.delete-form button {
+  color: red;
+}
+
+li {
+  list-style: none;
 }
 
 #homePage {
